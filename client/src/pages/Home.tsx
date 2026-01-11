@@ -157,7 +157,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8 mb-20">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="https://expo.dev/accounts/tsaojason/projects/yanbao-imaging-studio/builds" 
+                href="https://expo.dev/accounts/tsaojason/projects/yanbao-imaging-studio/builds/cea02707-41cb-49b5-8dc7-dadcdeb1b9c1" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)]"
