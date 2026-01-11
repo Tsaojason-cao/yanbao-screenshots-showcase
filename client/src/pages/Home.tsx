@@ -1,8 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Star, Camera, Wand2, Image as ImageIcon, Heart } from "lucide-react";
+import { Download, Star, Camera, Wand2, Image as ImageIcon, Heart, Play, Check, X, Phone, User, Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Home() {
   const screenshots = [
@@ -48,6 +56,46 @@ export default function Home() {
     }
   ];
 
+  const reviews = [
+    {
+      id: 1,
+      user: "内测用户 A",
+      avatar: "👩🏻",
+      content: "库洛米主题真的太戳我了！而且美颜效果很自然，不是那种假白。",
+      rating: 5
+    },
+    {
+      id: 2,
+      user: "摄影师 B",
+      avatar: "📸",
+      content: "7维美颜参数调节很专业，居然支持 LUT 滤镜导入，手机修图神器。",
+      rating: 5
+    },
+    {
+      id: 3,
+      user: "雁宝粉丝 C",
+      avatar: "💜",
+      content: "彩蛋太浪漫了！1017 那个日期出来的时候真的感动到了。Jason 有心了！",
+      rating: 5
+    },
+    {
+      id: 4,
+      user: "设计狮 D",
+      avatar: "🎨",
+      content: "UI 交互非常丝滑，特别是轮盘的触觉反馈，体验感拉满。",
+      rating: 5
+    }
+  ];
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/downloads/YanBao_AI_Studio_v1.5.0_Final.apk';
+    link.download = 'YanBao_AI_Studio_v1.5.0_Final.apk';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden font-sans selection:bg-primary/30">
       {/* 背景装饰 */}
@@ -60,13 +108,13 @@ export default function Home() {
       {/* 导航栏 */}
       <nav className="relative z-50 container py-6 flex justify-between items-center backdrop-blur-sm sticky top-0 border-b border-white/5">
         <div className="flex items-center gap-3 group cursor-pointer">
-          <span className="text-3xl group-hover:scale-110 transition-transform duration-300">💜</span>
+          <img src="/images/logo.png" alt="Logo" className="w-10 h-10 rounded-full border border-primary/50 group-hover:scale-110 transition-transform duration-300" />
           <div className="flex flex-col">
-            <span className="text-xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">雁宝 AI</span>
+            <span className="text-xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-chart-4">雁宝 AI</span>
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Imaging Studio</span>
           </div>
         </div>
-        <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
+        <Button onClick={handleDownload} variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
           <Download className="w-4 h-4" />
           下载 APK
         </Button>
@@ -106,8 +154,8 @@ export default function Home() {
             <span className="text-foreground/80 font-normal mt-2 inline-block">7维美颜矩阵 · GPU 加速渲染 · 云端同步</span>
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
-            <Button size="lg" className="h-14 px-10 text-lg rounded-full bg-gradient-to-r from-primary to-chart-2 hover:opacity-90 shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 border-0">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 items-center mb-20">
+            <Button onClick={handleDownload} size="lg" className="h-14 px-10 text-lg rounded-full bg-gradient-to-r from-primary to-chart-2 hover:opacity-90 shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 border-0 text-black font-bold">
               <Download className="w-6 h-6 mr-2" />
               立即下载 v1.5.0
             </Button>
@@ -115,11 +163,71 @@ export default function Home() {
               查看功能演示 ↓
             </Button>
           </div>
+
+          {/* Video Player Mockup */}
+          <div className="relative max-w-4xl mx-auto aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/50 backdrop-blur-sm group cursor-pointer">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-colors">
+              <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center pl-2 shadow-[0_0_30px_var(--color-primary)] group-hover:scale-110 transition-transform duration-300">
+                <Play className="w-8 h-8 text-black fill-black" />
+              </div>
+            </div>
+            <img src="/images/01_homepage_wheel.png" alt="Video Thumbnail" className="w-full h-full object-cover opacity-50 blur-sm" />
+            <div className="absolute bottom-6 left-6 text-left">
+              <h3 className="text-2xl font-bold text-white mb-1">雁宝 AI 功能演示</h3>
+              <p className="text-white/70">全面解析 7 维美颜与库洛米主题交互</p>
+            </div>
+          </div>
         </motion.div>
       </header>
 
+      {/* Comparison Table */}
+      <section className="relative z-10 container py-20">
+        <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          为什么选择雁宝 AI？
+        </h2>
+        <div className="max-w-4xl mx-auto rounded-3xl border border-white/10 overflow-hidden bg-black/20 backdrop-blur-md">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-white/10 hover:bg-transparent">
+                <TableHead className="w-[200px] text-lg font-bold text-white/50">功能特性</TableHead>
+                <TableHead className="text-lg font-bold text-primary text-center bg-primary/5">雁宝 AI</TableHead>
+                <TableHead className="text-lg font-bold text-white/50 text-center">普通美颜相机</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[
+                { feature: "广告干扰", yanbao: "无广告，纯净体验", other: "开屏/弹窗广告多", good: true },
+                { feature: "主题风格", yanbao: "专属库洛米定制", other: "大众化模板", good: true },
+                { feature: "美颜算法", yanbao: "7维精细调节 + GPU加速", other: "基础磨皮美白", good: true },
+                { feature: "云端同步", yanbao: "雁宝记忆多端同步", other: "仅本地保存", good: true },
+                { feature: "触觉反馈", yanbao: "全全局 Haptics 震动", other: "无/弱反馈", good: true },
+              ].map((row, i) => (
+                <TableRow key={i} className="border-white/5 hover:bg-white/5">
+                  <TableCell className="font-medium text-white/80">{row.feature}</TableCell>
+                  <TableCell className="text-center bg-primary/5">
+                    <div className="flex items-center justify-center gap-2 text-primary font-bold">
+                      <Check className="w-5 h-5" />
+                      {row.yanbao}
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-center text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                      {row.good ? <X className="w-5 h-5 text-red-400/50" /> : <Check className="w-5 h-5" />}
+                      {row.other}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </section>
+
       {/* Screenshots Grid */}
       <section className="relative z-10 container py-20">
+        <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          核心功能预览
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           {screenshots.map((item, index) => (
             <motion.div
@@ -176,23 +284,78 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews Wall */}
+      <section className="relative z-10 container py-32 mt-20">
+        <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          内测用户好评
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {reviews.map((review, index) => (
+            <motion.div
+              key={review.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Card className="h-full bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+                <CardContent className="p-6 flex flex-col gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl">
+                      {review.avatar}
+                    </div>
+                    <div>
+                      <div className="font-bold text-sm">{review.user}</div>
+                      <div className="flex text-primary text-xs">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-primary" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <Quote className="w-6 h-6 text-white/10 absolute -top-2 -left-2" />
+                    <p className="text-sm text-muted-foreground relative z-10 pl-4">
+                      {review.content}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="relative z-10 container py-32 text-center mt-32 border-t border-white/5">
+      <footer className="relative z-10 container py-20 text-center mt-20 border-t border-white/5 bg-black/20">
         <div className="flex flex-col items-center gap-8">
           <motion.div 
             whileHover={{ rotate: 360, scale: 1.1 }}
             transition={{ duration: 0.8 }}
-            className="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary/20 to-chart-2/20 flex items-center justify-center text-5xl border border-white/10 shadow-[0_0_30px_-10px_var(--color-primary)]"
+            className="w-20 h-20 rounded-full border-2 border-primary/50 p-1 shadow-[0_0_30px_-10px_var(--color-primary)]"
           >
-            💜
+            <img src="/images/logo.png" alt="Logo" className="w-full h-full rounded-full object-cover" />
           </motion.div>
+          
           <div>
-            <h2 className="text-4xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">YanBao AI</h2>
-            <p className="text-xl text-muted-foreground font-light">
-              Made with ❤️ for YanBao
+            <h2 className="text-3xl font-black mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-chart-4">YanBao AI</h2>
+            <p className="text-lg text-muted-foreground font-light">
+              Made with 💜 by Jason Tsao
             </p>
           </div>
-          <p className="text-sm text-muted-foreground/50 mt-8">
+
+          <div className="flex flex-col md:flex-row gap-8 text-sm text-muted-foreground/70">
+            <div className="flex items-center gap-2 hover:text-primary transition-colors">
+              <Phone className="w-4 h-4" />
+              <span>客服热线: 15201260173</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-primary transition-colors">
+              <User className="w-4 h-4" />
+              <span>作者: Jason Tsao</span>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground/30 mt-8">
             © 2026 YanBao AI Studio. All rights reserved.
           </p>
         </div>
