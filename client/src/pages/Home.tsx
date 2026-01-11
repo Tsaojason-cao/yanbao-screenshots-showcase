@@ -116,7 +116,7 @@ export default function Home() {
         </div>
         <Button onClick={handleDownload} variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
           <Download className="w-4 h-4" />
-          下载 APK
+          前往下载页 (Expo)
         </Button>
       </nav>
 
