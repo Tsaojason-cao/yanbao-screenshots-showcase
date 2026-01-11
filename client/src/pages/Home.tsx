@@ -158,11 +158,9 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8 mb-20">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-start">
               <div className="flex flex-col items-center">
-                <Link href="/download">
-                  <a className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)] cursor-pointer">
-                    <Download className="w-6 h-6" />
-                    立即下载 App
-                  </a>
+                <Link href="/download" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)] cursor-pointer">
+                  <Download className="w-6 h-6" />
+                  立即下载 App
                 </Link>
                 <p className="text-sm text-white/60 mt-2">
                   * 专为 Android 设备打造
