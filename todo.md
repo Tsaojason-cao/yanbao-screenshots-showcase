@@ -22,4 +22,14 @@
 - [x] 执行真正的生产构建（eas build --platform android --profile production）
 - [x] 获取真实 APK 下载链接（https://expo.dev/artifacts/eas/oE3aabFzE2TjqxjtbvhF3o.apk）
 - [x] 更新网站下载按钮
-- [ ] 同步代码到 GitHub
+- [x] 同步代码到 GitHub
+
+## APK 下载增强功能
+- [x] 在下载页面显示 APK 版本号、文件大小、发布日期
+- [x] 添加更新日志展示
+- [x] 为 APK 下载链接生成二维码
+- [x] 创建下载统计数据库表
+- [x] 实现下载次数追踪 API
+- [x] 构建后台管理页面展示下载统计
+- [x] 编写功能测试
+- [x] 同步到 GitHub

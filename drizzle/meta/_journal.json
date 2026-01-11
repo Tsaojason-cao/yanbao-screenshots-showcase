@@ -15,6 +15,13 @@
       "when": 1768142191450,
       "tag": "0001_late_blizzard",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768149323094,
+      "tag": "0002_amused_tyrannus",
+      "breakpoints": true
     }
   ]
 }

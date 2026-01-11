@@ -49,3 +49,24 @@ export const files = mysqlTable("files", {
 
 export type File = typeof files.$inferSelect;
 export type InsertFile = typeof files.$inferInsert;
+
+/**
+ * APK download statistics table.
+ * Tracks each download event for analytics.
+ */
+export const apkDownloads = mysqlTable("apkDownloads", {
+  id: int("id").autoincrement().primaryKey(),
+  /** APK version that was downloaded */
+  version: varchar("version", { length: 20 }).notNull(),
+  /** User's IP address (for unique visitor tracking) */
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  /** User agent string */
+  userAgent: text("userAgent"),
+  /** Referrer URL */
+  referrer: text("referrer"),
+  /** Download timestamp */
+  downloadedAt: timestamp("downloadedAt").defaultNow().notNull(),
+});
+
+export type ApkDownload = typeof apkDownloads.$inferSelect;
+export type InsertApkDownload = typeof apkDownloads.$inferInsert;
