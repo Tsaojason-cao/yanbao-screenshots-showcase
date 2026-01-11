@@ -155,16 +155,21 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col items-center gap-8 mb-20">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="https://expo.dev/accounts/tsaojason/projects/yanbao-imaging-studio/builds" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)]"
-              >
-                <Download className="w-6 h-6" />
-                Android (APK)
-              </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-start">
+              <div className="flex flex-col items-center">
+                <a 
+                  href="https://expo.dev/accounts/tsaojason/projects/yanbao-imaging-studio/builds" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)]"
+                >
+                  <Download className="w-6 h-6" />
+                  前往下载页 (Expo)
+                </a>
+                <p className="text-sm text-white/60 mt-2">
+                  * 点击跳转后，请选择最新的 "Finished" 构建下载 APK
+                </p>
+              </div>
               <a 
                 href="#" 
                 onClick={(e) => {
