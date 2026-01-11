@@ -94,12 +94,8 @@ export default function Home() {
   ];
 
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/downloads/YanBao_AI_Studio_v1.5.0_Final.apk';
-    link.download = 'YanBao_AI_Studio_v1.5.0_Final.apk';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // 真实的 Expo 构建 APK 下载链接
+    window.open('https://expo.dev/artifacts/eas/oE3aabFzE2TjqxjtbvhF3o.apk', '_blank');
   };
 
   return (
@@ -114,7 +110,7 @@ export default function Home() {
       {/* 导航栏 */}
       <nav className="relative z-50 container py-6 flex justify-between items-center backdrop-blur-sm sticky top-0 border-b border-white/5">
         <div className="flex items-center gap-3 group cursor-pointer">
-          <img src="/images/logo_kuromi.png" alt="Logo" className="w-10 h-10 rounded-full border border-primary/50 group-hover:scale-110 transition-transform duration-300 bg-white/10" />
+          <img src="/images/logo_new.png" alt="Logo" className="w-10 h-10 rounded-full border border-primary/50 group-hover:scale-110 transition-transform duration-300 bg-white/10" />
           <div className="flex flex-col">
             <span className="text-xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-chart-4">雁宝 AI</span>
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Imaging Studio</span>

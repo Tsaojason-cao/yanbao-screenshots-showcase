@@ -62,7 +62,7 @@ export default function DownloadPage() {
                   <p className="text-white/50 mb-8">v1.5.0 Final Release · Android</p>
 
                   <a 
-                    href="https://expo.dev/accounts/tsaojason/projects/yanbao-imaging-studio/builds" 
+                    href="https://expo.dev/artifacts/eas/oE3aabFzE2TjqxjtbvhF3o.apk" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full"
