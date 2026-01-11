@@ -154,14 +154,24 @@ export default function Home() {
             <span className="text-foreground/80 font-normal mt-2 inline-block">7维美颜矩阵 · GPU 加速渲染 · 云端同步</span>
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-6 items-center mb-20">
-            <Button onClick={handleDownload} size="lg" className="h-14 px-10 text-lg rounded-full bg-gradient-to-r from-primary to-chart-2 hover:opacity-90 shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 border-0 text-black font-bold">
-              <Download className="w-6 h-6 mr-2" />
-              立即下载 v1.5.0
-            </Button>
-            <Button size="lg" variant="ghost" className="h-14 px-10 text-lg rounded-full hover:bg-white/5 text-muted-foreground hover:text-foreground transition-all duration-300">
-              查看功能演示 ↓
-            </Button>
+          <div className="flex flex-col items-center gap-8 mb-20">
+            <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
+              <Button onClick={handleDownload} size="lg" className="h-14 px-10 text-lg rounded-full bg-gradient-to-r from-primary to-chart-2 hover:opacity-90 shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 border-0 text-black font-bold">
+                <Download className="w-6 h-6 mr-2" />
+                Android 下载
+              </Button>
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full border-white/20 hover:bg-white/10 text-white transition-all duration-300">
+                <span className="mr-2">🍎</span> iOS 预览 (Expo Go)
+              </Button>
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full border-white/20 hover:bg-white/10 text-white transition-all duration-300">
+                <span className="mr-2">💻</span> Windows 11 版
+              </Button>
+            </div>
+            
+            <div className="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yanbao.ai/download" alt="Download QR Code" className="w-32 h-32 rounded-lg opacity-90" />
+              <span className="text-xs text-muted-foreground">扫码直接下载</span>
+            </div>
           </div>
 
           {/* Video Player */}
