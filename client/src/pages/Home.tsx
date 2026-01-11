@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Star, Camera, Wand2, Image as ImageIcon, Heart, Play, Check, X, Phone, User, Quote } from "lucide-react";
+import { Download, Star, Camera, Wand2, Image as ImageIcon, Heart, Play, Check, X, Phone, User, Quote, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   Table,
@@ -108,7 +108,7 @@ export default function Home() {
       {/* 导航栏 */}
       <nav className="relative z-50 container py-6 flex justify-between items-center backdrop-blur-sm sticky top-0 border-b border-white/5">
         <div className="flex items-center gap-3 group cursor-pointer">
-          <img src="/images/logo.png" alt="Logo" className="w-10 h-10 rounded-full border border-primary/50 group-hover:scale-110 transition-transform duration-300" />
+          <img src="/images/logo_kuromi.png" alt="Logo" className="w-10 h-10 rounded-full border border-primary/50 group-hover:scale-110 transition-transform duration-300 bg-white/10" />
           <div className="flex flex-col">
             <span className="text-xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-chart-4">雁宝 AI</span>
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Imaging Studio</span>
@@ -155,22 +155,40 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col items-center gap-8 mb-20">
-            <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
-              <Button onClick={handleDownload} size="lg" className="h-14 px-10 text-lg rounded-full bg-gradient-to-r from-primary to-chart-2 hover:opacity-90 shadow-[0_0_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 border-0 text-black font-bold">
-                <Download className="w-6 h-6 mr-2" />
-                Android 下载
-              </Button>
-              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full border-white/20 hover:bg-white/10 text-white transition-all duration-300">
-                <span className="mr-2">🍎</span> iOS 预览 (Expo Go)
-              </Button>
-              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full border-white/20 hover:bg-white/10 text-white transition-all duration-300">
-                <span className="mr-2">💻</span> Windows 11 版
-              </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="https://expo.dev/accounts/caojason/projects/yanbao-imaging-studio/builds" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FDB931] text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.3)]"
+              >
+                <Download className="w-6 h-6" />
+                Android (APK)
+              </a>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("请使用 iPhone 相机扫描下方二维码，在 Expo Go 中体验。");
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg hover:bg-white/20 transition-all"
+              >
+                <Smartphone className="w-6 h-6" />
+                iOS (Expo Go)
+              </a>
             </div>
             
-            <div className="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yanbao.ai/download" alt="Download QR Code" className="w-32 h-32 rounded-lg opacity-90" />
-              <span className="text-xs text-muted-foreground">扫码直接下载</span>
+            <div className="mt-8 flex flex-col items-center gap-4">
+              <div className="p-4 bg-white rounded-xl shadow-2xl">
+                <img 
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=exp://u.expo.dev/update/7a6c9d8e-1b2a-4c3d-5e6f-7g8h9i0j1k2l" 
+                  alt="Expo Go QR Code" 
+                  className="w-48 h-48"
+                />
+              </div>
+              <p className="text-white/60 text-sm">
+                iPhone 用户请下载 <span className="text-[#FFD700]">Expo Go</span> App 扫码体验
+              </p>
             </div>
           </div>
 
@@ -224,7 +242,9 @@ export default function Home() {
                 { feature: "主题风格", yanbao: "专属库洛米定制", other: "大众化模板", good: true },
                 { feature: "美颜算法", yanbao: "7维精细调节 + GPU加速", other: "基础磨皮美白", good: true },
                 { feature: "云端同步", yanbao: "雁宝记忆多端同步", other: "仅本地保存", good: true },
-                { feature: "触觉反馈", yanbao: "全全局 Haptics 震动", other: "无/弱反馈", good: true },
+                { feature: "触觉反馈", yanbao: "全局 Haptics 震动", other: "无/弱反馈", good: true },
+                { feature: "专属彩蛋", yanbao: "1017 纪念日彩蛋", other: "无", good: true },
+                { feature: "隐私保护", yanbao: "本地处理，不上传人脸", other: "云端处理，隐私风险", good: true },
               ].map((row, i) => (
                 <TableRow key={i} className="border-white/5 hover:bg-white/5">
                   <TableCell className="font-medium text-white/80">{row.feature}</TableCell>
