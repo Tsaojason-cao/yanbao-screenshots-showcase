@@ -2,6 +2,7 @@ import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/sonner";
 import Home from "@/pages/Home";
 import DownloadPage from "@/pages/Download";
+import FileManager from "@/pages/FileManager";
 import NotFound from "@/pages/NotFound";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/download" component={DownloadPage} />
+        <Route path="/files" component={FileManager} />
         <Route component={NotFound} />
       </Switch>
       <Toaster />

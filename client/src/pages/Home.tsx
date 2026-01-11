@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +15,10 @@ import {
 } from "@/components/ui/table";
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const screenshots = [
     {
       id: 1,
@@ -115,10 +120,17 @@ export default function Home() {
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Imaging Studio</span>
           </div>
         </div>
-        <Button onClick={handleDownload} variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
-          <Download className="w-4 h-4" />
-          前往下载页 (Expo)
-        </Button>
+        <div className="flex gap-3">
+          <Link href="/files">
+            <Button variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
+              文件管理
+            </Button>
+          </Link>
+          <Button onClick={handleDownload} variant="outline" className="gap-2 border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 rounded-full px-6">
+            <Download className="w-4 h-4" />
+            前往下载页 (Expo)
+          </Button>
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -134,7 +146,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="inline-block"
           >
-            <Badge variant="secondary" className="mb-8 px-6 py-2 text-sm bg-primary/10 text-primary-foreground border border-primary/20 rounded-full backdrop-blur-md shadow-[0_0_20px_-5px_var(--color-primary)]">
+            <Badge variant="secondary" className="mb-8 px-6 py-2 text-sm bg-primary/10 text-primary-foreground border border-primary/20 rounded-full backdrop-blur-md shadow-[0_0_20px_-5px_var(--color-primary)]" style={{color: '#faf9f9'}}>
               ✨ v1.5.0 Final Release
             </Badge>
           </motion.div>
@@ -194,18 +206,36 @@ export default function Home() {
           </div>
 
           {/* Video Player */}
-          <div className="relative max-w-sm mx-auto aspect-[9/16] rounded-[2.5rem] overflow-hidden border-4 border-primary/30 shadow-[0_0_50px_-10px_var(--color-primary)] bg-black group">
+          <div className="relative max-w-sm mx-auto aspect-[9/16] rounded-[2.5rem] overflow-hidden border-4 border-primary/30 shadow-[0_0_50px_-10px_var(--color-primary)] bg-black group cursor-pointer">
             <video 
+              id="demo-video"
               className="w-full h-full object-cover"
               poster="/images/01_homepage_wheel.png"
-              controls
               playsInline
               loop
               muted
+              autoPlay
+              onClick={(e) => {
+                const video = e.currentTarget;
+                if (video.paused) {
+                  video.play();
+                } else {
+                  video.pause();
+                }
+              }}
             >
-              <source src="/videos/demo.mp4" type="video/mp4" />
+              <source src="/demo.mp4" type="video/mp4" />
               您的浏览器不支持视频播放。
             </video>
+            
+            {/* Play/Pause Overlay */}
+            <div 
+              className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20"
+            >
+              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                <Play className="w-8 h-8 text-white fill-white" />
+              </div>
+            </div>
             
             {/* Decorative Elements */}
             <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
@@ -216,15 +246,33 @@ export default function Home() {
                 App 实机演示
               </Badge>
               <p className="text-white/80 text-sm font-light">
-                沉浸式库洛米主题体验
+                点击屏幕 播放/暂停
               </p>
             </div>
+          </div>
+          
+          {/* Explore Button */}
+          <div className="mt-12">
+            <Button 
+              variant="ghost" 
+              className="text-white/60 hover:text-white hover:bg-white/10 gap-2 rounded-full px-6 py-6 text-lg transition-all animate-bounce"
+              onClick={() => {
+                document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              探索更多功能
+              <div className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </Button>
           </div>
         </motion.div>
       </header>
 
       {/* Comparison Table */}
-      <section className="relative z-10 container py-20">
+      <section id="features" className="relative z-10 container py-20">
         <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
           为什么选择雁宝 AI？
         </h2>
