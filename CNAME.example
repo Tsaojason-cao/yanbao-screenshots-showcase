@@ -1,0 +1,14 @@
+# 自定义域名配置示例
+# 
+# 如果您有自己的域名，可以将此文件重命名为 CNAME（去掉.example后缀）
+# 并将下面的域名替换为您的域名
+#
+# 例如：
+# yanbao.ai
+# www.yanbao.com
+# yanbao.example.com
+#
+# 然后在您的域名DNS设置中添加CNAME记录指向：
+# tsaojason-cao.github.io
+#
+# 详细步骤请参考 DEPLOYMENT.md 文档
