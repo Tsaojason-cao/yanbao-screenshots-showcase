@@ -4,20 +4,21 @@
  */
 
 export const APK_VERSION_INFO = {
-  version: "2.0.0-Gold",
-  buildNumber: "1",
+  version: "2.1.0-Ultimate",
+  buildNumber: "2",
   releaseDate: "2026-01-12",
   downloadUrl: "https://expo.dev/accounts/tsaojason/projects/yanbao-eas-build/builds/a342532b-30c3-4a56-b1bf-debbfd3bee68",
   fileSize: "50+ MB", // 生产级APK
   changelog: [
-    "✨ 库洛米主题深度融入（快门按钮/骷髅头装饰/浮动助手）",
+    "🗺️ 新增杭州/北京/广州/上海40个热门机位导航",
+    "🌎 机位推荐支持地图/列表双视图切换",
+    "🎯 机位筛选器：按城市+标签精准筛选（人像/风光/网红打卡）",
+    "🎨 12种LUT高质感预设（电影感/日系/韩系/富士CCD）",
+    "⭐ LUT收藏功能：固定常用预设到列表最前面",
+    "💖 1017告白彩蛋：连续点击Logo 5次触发",
+    "✨ 库洛米主题全系升级（快门按钮/骷髅头装饰/浮动助手）",
     "📸 7维AI塑形美颜系统（GPU加速，<100ms响应）",
-    "🎯 专业模式：ISO/快门/白平衡/峰值对焦",
-    "🗺️ 地区机位推荐系统（高精度定位）",
-    "👣 我的足迹功能（记录访问机位和拍摄数据）",
-    "💾 FlashList虚拟滚动（支持数千张4K照父60fps）",
-    "☁️ Supabase云端实时同步（北京↔杭州<500ms）",
-    "🔒 ProGuard代码混淆，工业级安全",
+    "🔒 ProGuard代码混淆 + 资源压缩，工业级安全",
   ],
   requirements: {
     android: "Android 8.0+",
