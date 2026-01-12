@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YanBao AI - 专业摄影 AI智能修图</title>
     <meta name="description" content="YanBao AI是一款专业摄影应用，集成40个真实机位推荐、12种LUT预设、AI影集生成和一键成片功能。库洛米主题，让摄影更有趣！">
+    <!-- 微信分享配置 -->
+    <meta property="og:title" content="YanBao AI - 专业摄影 AI智能修图">
+    <meta property="og:description" content="40个真实机位、12种LUT预设、AI影集生成、一键成片。库洛米主题，让摄影更有趣！">
+    <meta property="og:image" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/logo.png">
+    <meta property="og:url" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/">
+    <meta property="og:type" content="website">
+    <!-- 微信浏览器兼容性 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
     <style>
         * {
             margin: 0;
@@ -28,7 +39,8 @@
             justify-content: center;
             padding: 2rem;
             background: url('assets/hero-banner.png') center/cover no-repeat;
-            background-attachment: fixed;
+            /* 微信浏览器不支持fixed，改为scroll */
+            background-attachment: scroll;
         }
 
         .hero::before {
@@ -407,7 +419,7 @@
             <h2 class="section-title">宣传视频</h2>
             <p class="section-subtitle">看看YanBao AI能为你做什么</p>
             <div class="video-container">
-                <video controls autoplay muted loop style="width: 100%; max-width: 600px; border-radius: 20px; margin: 0 auto; display: block;">
+                <video controls muted loop playsinline webkit-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="portraint" style="width: 100%; max-width: 600px; border-radius: 20px; margin: 0 auto; display: block; object-fit: contain;">
                     <source src="assets/yanbao-promo.mp4" type="video/mp4">
                     您的浏览器不支持视频播放。
                 </video>
