@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YanBao AI - 专业摄影 AI智能修图</title>
+    <meta name="description" content="YanBao AI是一款专业摄影应用，集成40个真实机位推荐、12种LUT预设、AI影集生成和一键成片功能。库洛米主题，让摄影更有趣！">
+    <!-- 微信分享配置 -->
+    <meta property="og:title" content="YanBao AI - 专业摄影 AI智能修图">
+    <meta property="og:description" content="40个真实机位、12种LUT预设、AI影集生成、一键成片。库洛米主题，让摄影更有趣！">
+    <meta property="og:image" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/logo.png">
+    <meta property="og:url" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/">
+    <meta property="og:type" content="website">
+    <!-- 微信浏览器兼容性 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(91, 33, 182, 0.9) 0%, rgba(236, 72, 153, 0.9) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            animation: float 3s ease-in-out infinite;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            /* 微信浏览器视频优化 */
+            object-fit: contain;
+            background: #000;
+            max-height: 70vh;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .feature-card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            /* 微信图片优化 */
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .feature-card picture {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .checkmark {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .crossmark {
+            color: #f44336;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-card h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .download-card p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.3rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .download-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+                padding: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            section {
+                padding: 3rem 1.5rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .download-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+            th, td {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+            .feature-card {
+                padding: 1.5rem;
+            }
+            .feature-icon {
+                font-size: 2.5rem;
+            }
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+            .download-card {
+                padding: 2rem 1.5rem;
+            }
+            .download-card h3 {
+                font-size: 1.5rem;
+            }
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+            th, td {
+                padding: 0.75rem 0.25rem;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 1rem;
+            }
+            .logo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo"><img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/kuromi-logo.png" alt="YanBao AI Logo"></div>
+            <h1>YanBao AI</h1>
+            <p>专业摄影 · AI智能修图 · 库洛米主题</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">立即下载</a>
+                <a href="#features" class="btn btn-secondary">了解更多</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">因为是你 所以代码有了温度</h2>
+            <p class="section-subtitle" style="font-size: 1.5rem; font-weight: 600;">YanBao AI 为你而生</p>
+            <div class="video-container">
+                <video 
+                    controls 
+                    playsinline 
+                    webkit-playsinline 
+                    x5-video-player-type="h5" 
+                    x5-playsinline="true"
+                    x5-video-player-fullscreen="true" 
+                    x5-video-orientation="portrait"
+                    poster="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-home.webp"
+                    preload="auto"
+                    style="width: 100%; height: auto;"
+                >
+                    <source src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/yanbao-promo.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。请在微信中打开查看。
+                </video>
+                <p style="text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">
+                    📱 竖版视频优化，适合手机观看 | 40秒 | 1080x1920
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">核心功能</h2>
+            <p class="section-subtitle">工业级专业摄影工具</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-spots.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-spots.png" alt="机位推荐截图">
+                    </picture>
+                    <div class="feature-icon">📍</div>
+                    <h3>40个真实机位</h3>
+                    <p>覆盖杭州、北京、广州、上海四大城市，每个机位都经过专业摄影师实地勘察，提供最佳拍摄角度和时间建议。地图标注清晰，一键导航到 Google Maps。</p>
+                </div>
+
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-edit.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-edit.png" alt="LUT预设截图">
+                    </picture>
+                    <div class="feature-icon">🎨</div>
+                    <h3>12种LUT预设</h3>
+                    <p>电影感、日系、韩系、富士CCD、现代风格，一键应用专业调色，支持强度调节和收藏功能。Before/After对比界面，实时预览调色效果。</p>
+                </div>
+
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-gallery.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-gallery.png" alt="相册截图">
+                    </picture>
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI影集生成</h3>
+                    <p>智能场景识别，自动分组照片，推荐最佳转场效果和背景音乐，让你的照片讲述故事。FlashList 虚拟滚动，支持数千张4K照片60fps滑动。</p>
+                </div>
+
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-home.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-home.png" alt="首页截图">
+                    </picture>
+                    <div class="feature-icon">🎬</div>
+                    <h3>一键成片</h3>
+                    <p>选择照片后一键生成视频，自动添加转场和音乐，快速分享到社交媒体。库洛米星光轮盘导航，统计卡片显示拍摄数据。</p>
+                </div>
+
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-camera.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-camera.png" alt="相机截图">
+                    </picture>
+                    <div class="feature-icon">📸</div>
+                    <h3>专业相机模式</h3>
+                    <p>手动调节ISO、快门速度、白平衡，峰值对焦辅助，7维美颜参数实时调节。全屏实时预览，专业模式支持手动对焦。</p>
+                </div>
+
+                <div class="feature-card">
+                    <picture>
+                        <source srcset="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-settings.webp" type="image/webp">
+                        <img src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-settings.png" alt="设置截图">
+                    </picture>
+                    <div class="feature-icon">👤</div>
+                    <h3>用户自选</h3>
+                    <p>个性化设置中心，自由选择存储方式（本地/云端），自定义主题和界面风格。用户信息、存储统计、同步状态一目了然，完全掌控你的数据。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">竞品比较</h2>
+            <p class="section-subtitle">为什么选择YanBao AI？</p>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>YanBao AI</th>
+                            <th>美图秀秀</th>
+                            <th>像素蛋糕</th>
+                            <th>Snapseed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>真实机位推荐</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>专业LUT预设</td>
+                            <td><span class="checkmark">✓ 12种</span></td>
+                            <td><span class="checkmark">✓ 基础</span></td>
+                            <td><span class="checkmark">✓ 高级</span></td>
+                            <td><span class="checkmark">✓ 基础</span></td>
+                        </tr>
+                        <tr>
+                            <td>AI影集生成</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>一键成片</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>专业相机模式</td>
+                            <td><span class="checkmark">✓ 完整</span></td>
+                            <td><span class="checkmark">✓ 基础</span></td>
+                            <td><span class="checkmark">✓ 完整</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>用户自选存储</td>
+                            <td><span class="checkmark">✓ 本地/云端</span></td>
+                            <td><span class="checkmark">✓ 仅云端</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>库洛米主题</td>
+                            <td><span class="checkmark">✓ 独家</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>价格</td>
+                            <td>免费</td>
+                            <td>免费+内购</td>
+                            <td>¥68/年</td>
+                            <td>免费</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2 class="section-title">立即下载</h2>
+            <p class="section-subtitle">支持Android和iOS平台</p>
+            <div class="download-grid">
+                <div class="download-card">
+                    <h3>🤖 Android APK</h3>
+                    <p>支持Android 8.0及以上版本</p>
+                    <p style="margin: 2rem 0; font-size: 1.1rem; color: #fff; font-weight: 600;">
+                        v2.0.0 生产版
+                    </p>
+                    <a href="https://expo.dev/accounts/tsaojason/projects/yanbao-eas-build/builds/0fab346f-672d-417f-8c3e-0072c4a3ed48" target="_blank" class="btn btn-primary" style="margin-bottom: 1rem;">
+                        📥 下载 APK
+                    </a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
+                        构建 ID: 0fab346f-672d-417f-8c3e-0072c4a3ed48<br>
+                        点击按钮访问 Expo 构建页面下载
+                    </p>
+                </div>
+                
+                <div class="download-card">
+                    <h3>🍎 iOS</h3>
+                    <p>支持iOS 13.0及以上版本</p>
+                    <p style="margin: 2rem 0; font-size: 1.1rem; color: #fff; font-weight: 600;">
+                        扫码使用Expo Go测试
+                    </p>
+                    <a href="https://github.com/Tsaojason-cao/yanbao-imaging-studio/blob/main/%E5%AE%9E%E6%9C%BA%E6%B5%8B%E8%AF%95%E6%8C%87%E5%8D%97-v2.0.0.md" target="_blank" class="btn btn-primary" style="margin-bottom: 1rem;">
+                        查看测试指南
+                    </a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
+                        或联系开发者加入TestFlight
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 YanBao AI. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Made with 💜 by <a href="https://github.com/Tsaojason-cao" target="_blank" style="color: rgba(255, 255, 255, 0.9); text-decoration: none;">Tsaojason-cao</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Version: v2.0.0-Production | Build: 0fab346f-672d-417f-8c3e-0072c4a3ed48</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">构建时间: 2026-01-12 | EAS Build 云端构建</p>
+    </footer>
+</body>
+</html>
