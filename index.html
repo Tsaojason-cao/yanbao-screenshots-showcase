@@ -11,6 +11,11 @@
     <meta property="og:image" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/logo.png">
     <meta property="og:url" content="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/">
     <meta property="og:type" content="website">
+    <!-- 微信浏览器兼容性 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
     <style>
         * {
             margin: 0;
@@ -138,6 +143,10 @@
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            /* 微信浏览器视频优化 */
+            object-fit: contain;
+            background: #000;
+            max-height: 70vh;
         }
 
         /* Section Styles */
@@ -211,6 +220,10 @@
             border-radius: 15px;
             margin-bottom: 1rem;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            /* 微信图片优化 */
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Comparison Table */
@@ -478,9 +491,18 @@
             <h2 class="section-title">因为是你 所以代码有了温度</h2>
             <p class="section-subtitle" style="font-size: 1.5rem; font-weight: 600;">YanBao AI 为你而生</p>
             <div class="video-container">
-                <video controls muted loop playsinline webkit-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="portraint">
+                <video 
+                    controls 
+                    playsinline 
+                    webkit-playsinline 
+                    x5-video-player-type="h5" 
+                    x5-video-player-fullscreen="true" 
+                    x5-video-orientation="portraint"
+                    poster="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/module-home.png"
+                    preload="metadata"
+                >
                     <source src="https://tsaojason-cao.github.io/yanbao-screenshots-showcase/assets/yanbao-promo.mp4" type="video/mp4">
-                    您的浏览器不支持视频播放。
+                    您的浏览器不支持视频播放。请在微信中打开查看。
                 </video>
                 <p style="text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">
                     📱 竖版视频优化，适合手机观看 | 40秒 | 1080x1920
